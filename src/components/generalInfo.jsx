@@ -1,19 +1,35 @@
 import "/src/styles/generalInfo.css";
 import { useState } from "react";
+import { useRef } from 'react';
+
 import { GrMail } from "react-icons/gr";
 import { MdLocationOn } from "react-icons/md";
 import { FaPhone } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 
+
 function GeneralInfo() {
     const [values, setValues] = useState({
         name: "",
         role: "",
+        photo: "https://cdn2.iconfinder.com/data/icons/font-awesome/1792/upload-512.png",
         email: "",
         phone: "",
         address: "",
         linkedin: "",
     });
+    const [active, setActive] = useState(false);
+
+    //useRef is a React Hook that lets you reference a value that’s not needed for rendering. In this case, we’re using it to reference the file input element.
+    const fileInputRef = useRef(null); 
+
+    const handleFocus = () => {
+        setActive(true);
+    };
+
+    const handleBlur = () => {
+        setActive(false);
+    };
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -24,9 +40,32 @@ function GeneralInfo() {
         event.target.style.color = "black";
     }
 
+    function imageChange(event) {
+        const reader = new FileReader();
+        const file = event.target.files[0];
+        reader.onloadend = () => {
+            setValues((prevValues) => ({
+                ...prevValues,
+                photo: reader.result,
+            }));
+        };
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
+    const handleProfileImageClick = () => {
+        // Programmatically trigger the file input when the profile image is clicked
+        fileInputRef.current.click();
+    };
+
     return (
         <>
-            <div className="generalInfo">
+            <div
+                className={`generalInfo ${active ? "focused" : ""}`}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+            >
                 <div className="name">
                     <input
                         name="name"
@@ -44,6 +83,19 @@ function GeneralInfo() {
                         placeholder="Software Engineer"
                         style={{ fontSize: "18px", fontWeight: "600" }}
                     ></input>
+                </div>
+                <div className="photo" onClick={handleProfileImageClick}>
+                    <input
+                        ref={fileInputRef}
+                        name="photo"
+                        type="file"
+                        accept="image/*"
+                        onChange={imageChange}
+                        style={{ display: "none" }} // Hide the default file input
+                    />
+                    <div className="profile-image">
+                        <img src={values.photo} style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
+                    </div>
                 </div>
                 <div className="sub-details">
                     <div className="email">
@@ -72,7 +124,7 @@ function GeneralInfo() {
                             name="address"
                             value={values.address}
                             onChange={handleChange}
-                            placeholder="1234 Main St, City, State, 12345"
+                            placeholder="1234 Main St, City, State"
                         ></input>
                     </div>
                     <div className="linkedin">
@@ -81,7 +133,7 @@ function GeneralInfo() {
                             name="linkedin"
                             value={values.linkedin}
                             onChange={handleChange}
-                            placeholder="linkedin.com/in/TheBoy"
+                            placeholder="/in/TheBoy"
                         ></input>
                     </div>
                 </div>
