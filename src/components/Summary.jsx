@@ -21,8 +21,6 @@ function Summary() {
     return (
         <>
             <div className="summary ">
-                <h3>Summary</h3>
-                <hr />
                 <form>
                     <textarea
                         className={`${active ? "focused" : ""}`}
