@@ -1,12 +1,11 @@
 import "/src/styles/generalInfo.css";
 import { useState } from "react";
-import { useRef } from 'react';
+import { useRef } from "react";
 
 import { GrMail } from "react-icons/gr";
 import { MdLocationOn } from "react-icons/md";
 import { FaPhone } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
-
 
 function GeneralInfo() {
     const [values, setValues] = useState({
@@ -21,7 +20,7 @@ function GeneralInfo() {
     const [active, setActive] = useState(false);
 
     //useRef is a React Hook that lets you reference a value that’s not needed for rendering. In this case, we’re using it to reference the file input element.
-    const fileInputRef = useRef(null); 
+    const fileInputRef = useRef(null);
 
     const handleFocus = () => {
         setActive(true);
@@ -60,8 +59,8 @@ function GeneralInfo() {
     };
 
     return (
-        <>
-            <div
+        <div>
+            <form
                 className={`generalInfo ${active ? "focused" : ""}`}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
@@ -94,7 +93,14 @@ function GeneralInfo() {
                         style={{ display: "none" }} // Hide the default file input
                     />
                     <div className="profile-image">
-                        <img src={values.photo} style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
+                        <img
+                            src={values.photo}
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "cover",
+                            }}
+                        />
                     </div>
                 </div>
                 <div className="sub-details">
@@ -137,8 +143,8 @@ function GeneralInfo() {
                         ></input>
                     </div>
                 </div>
-            </div>
-        </>
+            </form>
+        </div>
     );
 }
 
