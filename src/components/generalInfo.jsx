@@ -71,7 +71,7 @@ function GeneralInfo() {
                         name="name"
                         value={values.name}
                         onChange={handleChange}
-                        placeholder="John Doe"
+                        placeholder="Name"
                         style={{ fontSize: "36px", fontWeight: "bold" }}
                     ></input>
                 </div>
@@ -80,7 +80,7 @@ function GeneralInfo() {
                         name="role"
                         value={values.role}
                         onChange={handleChange}
-                        placeholder="Software Engineer"
+                        placeholder="Professional Title"
                         style={{ fontSize: "18px", fontWeight: "600" }}
                     ></input>
                 </div>
@@ -104,7 +104,7 @@ function GeneralInfo() {
                             name="email"
                             value={values.email}
                             onChange={handleChange}
-                            placeholder="TheBoy@gmail.com"
+                            placeholder="Email"
                             type="email"
                         ></input>
                     </div>
@@ -114,7 +114,7 @@ function GeneralInfo() {
                             name="phone"
                             value={values.phone}
                             onChange={handleChange}
-                            placeholder="555-555-5555"
+                            placeholder="Phone"
                             type="tel"
                         ></input>
                     </div>
@@ -124,7 +124,7 @@ function GeneralInfo() {
                             name="address"
                             value={values.address}
                             onChange={handleChange}
-                            placeholder="1234 Main St, City, State"
+                            placeholder="Address"
                         ></input>
                     </div>
                     <div className="linkedin">
@@ -133,7 +133,7 @@ function GeneralInfo() {
                             name="linkedin"
                             value={values.linkedin}
                             onChange={handleChange}
-                            placeholder="/in/TheBoy"
+                            placeholder="LinkedIn"
                         ></input>
                     </div>
                 </div>
